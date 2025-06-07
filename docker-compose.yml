@@ -1,0 +1,12 @@
+services:
+  app:
+    image: golang:1.24-alpine
+    container_name: smart-grammar-bot
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: go run main.go
+    environment:
+      - TELEGRAM_BOT_TOKEN=your_token
+      - GEMINI_API_KEY=your_key
+    restart: unless-stopped
