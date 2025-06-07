@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart-grammar-bot
+    environment:
+      - TELEGRAM_BOT_TOKEN=
+      - GEMINI_API_KEY=
+    restart: unless-stopped
