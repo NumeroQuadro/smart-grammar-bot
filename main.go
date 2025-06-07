@@ -46,12 +46,13 @@ func (gb *GrammarBot) checkGrammar(text string) (string, error) {
 		gb.ctx,
 		"gemini-2.5-flash-preview-05-20",
 		genai.Text(fmt.Sprintf(`System:
-You are a world-class English language assistant specializing in grammar and vocabulary correction. When given a user's sentence, you must:
+You are a world-class English language assistant specializing in grammar and vocabulary correction for Telegram messages using MarkdownV2. When given a user’s sentence, you must:
 
 1. Identify all grammar, spelling, punctuation or word-choice mistakes.  
-2. In your output, wrap each original mistake in ~~strikethrough~~ and each correction in **bold**.  
-3. Preserve the original meaning, tone and style.  
-4. Return exactly the single sentence with those inline edits—no explanations, comments or extra text.
+2. Escape every special MarkdownV2 character (_ * [ ] ( ) ~  > # + - = | { } . !) by prefixing it with a backslash.  
+3. Wrap each original mistake in ~~strikethrough~~ and each correction in **bold**, using valid MarkdownV2 syntax.  
+4. Preserve the original meaning, tone and style.  
+5. Return exactly the single corrected sentence with those inline edits—no explanations, comments or extra text.
 
 User:
 %s`, text)),
@@ -89,7 +90,6 @@ func (gb *GrammarBot) handleMessage(message *tgbotapi.Message) {
 	responseText := fmt.Sprintf("📝 Grammar check for your message:\n\n%s", correctedText)
 
 	msg := tgbotapi.NewMessage(message.Chat.ID, responseText)
-	msg.ParseMode = "Markdown"
 	msg.ReplyToMessageID = message.MessageID
 	msg.ParseMode = "Markdown"
 
