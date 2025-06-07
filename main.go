@@ -86,9 +86,10 @@ func (gb *GrammarBot) handleMessage(message *tgbotapi.Message) {
 	}
 
 	// Prepare response message
-	responseText := fmt.Sprintf("📝 Grammar check for your message:\n\n%s\n\n💡 *Tip: Review the corrections above to make sure your message was intended as written.*", correctedText)
+	responseText := fmt.Sprintf("📝 Grammar check for your message:\n\n%s", correctedText)
 
 	msg := tgbotapi.NewMessage(message.Chat.ID, responseText)
+	msg.ParseMode = "Markdown"
 	msg.ReplyToMessageID = message.MessageID
 	msg.ParseMode = "Markdown"
 

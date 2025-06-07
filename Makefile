@@ -5,19 +5,17 @@ all: lint build
 
 docker-build:
 	@echo "Building from Docker Compose file..."
-	@docker-compose build
+	@docker compose build
 
 docker-run: docker-build
-	docker-compose up -d
+	docker compose up -d
 
 docker-down:
 	@echo "Stopping Docker container..."
-	@docker-compose down
+	@docker compose down
 
-down:
-	@make migration-down
-	@docker-compose down
-
+docker-logs:
+	@docker logs -f "
 deps:
 	go mod tidy
 	go mod download
