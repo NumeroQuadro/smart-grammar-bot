@@ -15,7 +15,8 @@ docker-down:
 	@docker compose down
 
 docker-logs:
-	@docker logs -f "
+	docker logs -f smart-grammar-bot
+
 deps:
 	go mod tidy
 	go mod download

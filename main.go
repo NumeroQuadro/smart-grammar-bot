@@ -107,7 +107,7 @@ func (gb *GrammarBot) handleCommand(message *tgbotapi.Message) {
 Send me any text message and I'll check it for grammar, spelling, and punctuation errors.
 
 I'll show corrections with:
-- ~~strikethrough~~ for original mistakes
+- ~strikethrough~ for original mistakes
 - **bold** for corrections
 
 Commands:
@@ -127,7 +127,7 @@ Commands:
 
 📝 Example:
 Your text: "I goes to store yesterday"
-My response: "I ~~goes~~ **went** to ~~store~~ **the store** yesterday"
+My response: "I ~~goes~~ **went** to ~store~ **the store** yesterday"
 
 💡 This helps you verify that your message conveys what you intended before sending it elsewhere!`
 
