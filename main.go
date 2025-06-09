@@ -50,7 +50,7 @@ You are a world-class English language assistant specializing in grammar and voc
 
 1. Identify all grammar, spelling, punctuation or word-choice mistakes.  
 2. Escape every special MarkdownV2 character (_ * [ ] ( ) ~  > # + - = | { } . !) by prefixing it with a backslash.  
-3. Wrap each original mistake in ~~strikethrough~~ and each correction in **bold**, using valid MarkdownV2 syntax.  
+3. Wrap each original mistake in ~strikethrough~ and each correction in **bold**, using valid MarkdownV2 syntax.  
 4. Preserve the original meaning, tone and style.  
 5. Return exactly the single corrected sentence with those inline edits—no explanations, comments or extra text.
 
@@ -91,7 +91,7 @@ func (gb *GrammarBot) handleMessage(message *tgbotapi.Message) {
 
 	msg := tgbotapi.NewMessage(message.Chat.ID, responseText)
 	msg.ReplyToMessageID = message.MessageID
-	msg.ParseMode = "Markdown"
+	msg.ParseMode = "MarkdownV2"
 
 	// Send the corrected text
 	if _, err := gb.bot.Send(msg); err != nil {
@@ -115,7 +115,7 @@ Commands:
 /help - Show help information`
 
 		msg := tgbotapi.NewMessage(message.Chat.ID, welcomeText)
-		msg.ParseMode = "Markdown"
+		msg.ParseMode = "MarkdownV2"
 		gb.bot.Send(msg)
 
 	case "help":
@@ -127,12 +127,12 @@ Commands:
 
 📝 Example:
 Your text: "I goes to store yesterday"
-My response: "I ~~goes~~ **went** to ~store~ **the store** yesterday"
+My response: "I ~goes~ **went** to ~store~ **the store** yesterday"
 
 💡 This helps you verify that your message conveys what you intended before sending it elsewhere!`
 
 		msg := tgbotapi.NewMessage(message.Chat.ID, helpText)
-		msg.ParseMode = "Markdown"
+		msg.ParseMode = "MarkdownV2"
 		gb.bot.Send(msg)
 
 	default:

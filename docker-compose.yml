@@ -1,7 +1,7 @@
 services:
   app:
-    image: golang:1.24-alpine
     container_name: smart-grammar-bot
+    image: golang:1.24-alpine
     volumes:
       - ./:/app
     working_dir: /app
